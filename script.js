@@ -33,14 +33,17 @@ let j;
 //Create a loop that searches for the next prime number, starting at n and incrementing from there.
 //As soon as you find the prime number, log that number and exit the loop.
 
-let n = 180;
-let isPrime = false;
 
-while(!isPrime){
+
+// variable initilazation
+let n = 967;
+let isPrime = false; // this will be used to determine whether the current value of n is a prime number
+
+while(!isPrime){ // loop continues to execute as long as isPrime is false.
   isPrime = true;
   n++;
 
-  for(let i = 2; i < n / 2; i++){
+  for(let i = 2; i <= n / 2; i++){ // this loop checks if number is divisible by i which is half of n at this point. 
     if(n % i === 0){
       isPrime = false;
       break;
