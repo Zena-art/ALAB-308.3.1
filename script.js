@@ -53,3 +53,56 @@ while(!isPrime){ // loop continues to execute as long as isPrime is false.
     console.log("Next Prime Number is: " + n )
   }
 }
+
+
+// Loop through the characters of a given CSV string.
+// Store each “cell” of data in a variable.
+// When you encounter a comma, move to the next cell.
+// When you encounter the “\r\n” sequence, move to the next “row.”
+// Log each row of data.
+// You do not need to format the data, the following works well.
+// console.log(cell1, cell2, cell3, cell4);
+// You can make the following assumptions:
+// There will only be 4 cells per row.
+// There will be no escaped characters other than “\n”.
+// Use the example string provided above to test your program. Once you are confident it is working correctly, try the following string to see if your program works properly with other data.
+
+
+
+const string = 'Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232';
+
+let cell = '';
+let row = '';
+let result = '';
+let currentChar;
+
+// Iterate through each character in the string
+for (let i = 0; i < string.length; i++) {
+    currentChar = string[i];
+
+    if (currentChar === ',') {
+        // Add a space between cells for readability
+        row += cell.trim() + ' | '; // Use '|' as a delimiter for cells
+        cell = ''; // Reset the cell
+    } else if (currentChar === '\n') {
+        // End the current row and add it to the result
+        row += cell.trim(); // Add the last cell to the row
+        result += row + '\n'; // Add the row to the result
+        row = ''; // Reset the row
+        cell = ''; // Reset the cell
+    } else {
+        // Accumulate characters for the cell
+        cell += currentChar;
+    }
+}
+
+// Add the last cell and row to the result
+if (cell) {
+    row += cell.trim();
+}
+if (row) {
+    result += row;
+}
+
+// Output the processed data
+console.log(result);
